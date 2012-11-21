@@ -10,7 +10,7 @@ using namespace std;
 int minimo;
 int recorridos[600];
 
-void dfs(vector<vector<int> > listaAdyacencia, int padre, int previo, int actual, int pasos){
+void dfs(vector<vector<int> > listaAdyacencia, int previo, int actual, int pasos){
 
 	if (pasos>minimo)					return;
 
@@ -23,7 +23,7 @@ void dfs(vector<vector<int> > listaAdyacencia, int padre, int previo, int actual
 
 		if (recorridos[siguienteNodo]==-1){
 			recorridos[siguienteNodo]=pasos;
-			dfs(listaAdyacencia,padre,actual,siguienteNodo,pasos+1);
+			dfs(listaAdyacencia,actual,siguienteNodo,pasos+1);
 			recorridos[siguienteNodo]=-1;
 		}
 		else{
@@ -54,7 +54,7 @@ int main() {
 		}
 
 		for (int i=0; i<n; i++)
-			dfs(listaAdyacencia,0,0,0,0);
+			dfs(listaAdyacencia,i,i,0);
 
 		cout << "Case " << x << ": ";
 		if (minimo>550)	cout << "impossible" << endl;
@@ -62,3 +62,4 @@ int main() {
 	}
 	return 0;
 }
+
